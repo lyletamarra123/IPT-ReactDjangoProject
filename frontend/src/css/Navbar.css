@@ -1,0 +1,35 @@
+nav {
+    display: relative;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #a5992c;
+  }
+  
+  nav h1 {
+    margin: 0;
+  }
+  
+  nav a {
+    margin-right: 1rem;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  nav button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  nav button:hover {
+    background-color: #555;
+  }
+  
+  nav a:hover {
+    color: #555;
+  }
+  

@@ -1,0 +1,21 @@
+footer {
+  background-color: #a5992c;
+  color: #333;
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px; /* Set a fixed height for the footer */
+}
+
+footer h4 {
+  margin: 0;
+  font-size: 1.2rem;
+}
