@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.css";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
@@ -26,7 +26,7 @@ function App() {
           </Switch>
           </div>
         </AuthProvider>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );
