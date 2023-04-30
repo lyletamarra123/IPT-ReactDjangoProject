@@ -4,6 +4,8 @@ nav {
     align-items: center;
     padding: 1rem;
     background-color: #a5992c;
+    width: 100%;
+    box-sizing: border-box;
   }
   
   nav h1 {
