@@ -3,7 +3,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: #a5992c;
+    background-color: #dec16373;
     width: 100%;
     box-sizing: border-box;
   }
@@ -32,6 +32,6 @@ nav {
   }
   
   nav a:hover {
-    color: #555;
+    color: white;
   }
   
