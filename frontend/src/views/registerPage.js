@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
+import "../css/registerPage.css";
 
 function Register() {
   const [username, setUsername] = useState("");
@@ -13,9 +14,9 @@ function Register() {
   };
 
   return (
-    <section>
-      <form onSubmit={handleSubmit}>
-        <h1>Register</h1>
+    <section className="regSection">
+      <form onSubmit={handleSubmit} className="regForm">
+        <h1>Register an account</h1>
         <hr />
         <div>
           <label htmlFor="username">Username</label>

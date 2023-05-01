@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
+import "../css/loginPage.css";
 
 const LoginPage = () => {
   const { loginUser } = useContext(AuthContext);
@@ -11,8 +12,8 @@ const LoginPage = () => {
   };
 
   return (
-    <section>
-      <form onSubmit={handleSubmit}>
+    <section className="loginSection">
+      <form onSubmit={handleSubmit} className="loginForm">
         <h1>Login </h1>
         <hr />
         <label htmlFor="username">Username</label>

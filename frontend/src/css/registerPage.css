@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins:300);
 
-.loginSection {
+.regSection {
   background: #282c34;
   font-family: "Poppins";    
   display: flex;
@@ -9,7 +9,7 @@
   height: 100% ;
   margin-top: 5%;
 }
-.loginForm {
+.regForm {
   position: relative;
   background: #dec16373;
   max-width: 360px;
@@ -18,7 +18,7 @@
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   border-radius:15px;
 }
-.loginForm input {
+.regForm input {
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -29,7 +29,7 @@
   font-size: 14px;
   border-radius:15px;
 }
-.loginForm button {
+.regForm button {
   text-transform: uppercase;
   outline: 0;
   background: #24be26;
@@ -43,6 +43,6 @@
   transition: all 0.3 ease;
   cursor: pointer;
 }
-.loginForm button:hover,.form button:active,.form button:focus {
+.regForm button:hover,.form button:active,.form button:focus {
   background: #29d629;
 }
