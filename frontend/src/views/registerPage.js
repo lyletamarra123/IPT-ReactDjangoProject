@@ -4,13 +4,15 @@ import "../css/registerPage.css";
 
 function Register() {
   const [username, setUsername] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const { registerUser } = useContext(AuthContext);
 
   const handleSubmit = async e => {
     e.preventDefault();
-    registerUser(username, password, password2);
+    registerUser(username, firstName, lastName, password, password2);
   };
 
   return (
@@ -31,9 +33,9 @@ function Register() {
         <div>
           <label htmlFor="password">First Name</label>
           <input
-            type="password"
-            id="password"
-            onChange={e => setPassword(e.target.value)}
+            type="text"
+            id="firstname"
+            onChange={e => setFirstName(e.target.value)}
             placeholder="First Name"
             required
           />
@@ -41,9 +43,9 @@ function Register() {
         <div>
           <label htmlFor="password">Last Name</label>
           <input
-            type="password"
-            id="password"
-            onChange={e => setPassword(e.target.value)}
+            type="text"
+            id="lastname"
+            onChange={e => setLastName(e.target.value)}
             placeholder="Last Name"
             required
           />
