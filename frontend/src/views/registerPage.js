@@ -19,12 +19,32 @@ function Register() {
         <h1>Register an account</h1>
         <hr />
         <div>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Student Number</label>
           <input
             type="text"
             id="username"
             onChange={e => setUsername(e.target.value)}
-            placeholder="Username"
+            placeholder="Student Number"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="password">First Name</label>
+          <input
+            type="password"
+            id="password"
+            onChange={e => setPassword(e.target.value)}
+            placeholder="First Name"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Last Name</label>
+          <input
+            type="password"
+            id="password"
+            onChange={e => setPassword(e.target.value)}
+            placeholder="Last Name"
             required
           />
         </div>
