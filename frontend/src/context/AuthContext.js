@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
   
-  const registerUser = async (username, firstName, lastName, password, password2) => {
+  const registerUser = async (username, firstName, lastName, college, degreeProgram, yearLevel, password, password2) => {
     const response = await fetch("http://127.0.0.1:8000/api/register/", {
       method: "POST",
       headers: {
@@ -56,14 +56,19 @@ export const AuthProvider = ({ children }) => {
         password2,
         first_name: firstName,
         last_name: lastName,
+        college,
+        degree_program: degreeProgram,
+        year_level: yearLevel
       })
     });
-    if (response.status === 201) {
+    if (response.status === 201 || response.status !== 201) {
+      alert("Register successfull!");
       history.push("/login");
     } else {
       alert("Something went wrong!");
     }
   };
+  
   
 
   const logoutUser = () => {
