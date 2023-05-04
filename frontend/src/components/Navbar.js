@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import UserInfo from "../components/UserInfo";
 import "../css/Navbar.css";
 
 const Navbar = () => {
@@ -12,6 +13,7 @@ const Navbar = () => {
         <div>
           {user ? (
             <>
+              <p>{user && <UserInfo user={user} />}</p>
               <Link to="/">Home</Link>
               <Link to="/protected">Academics</Link>
               <button onClick={logoutUser}>Logout</button>

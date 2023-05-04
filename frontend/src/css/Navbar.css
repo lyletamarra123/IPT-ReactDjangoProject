@@ -12,6 +12,11 @@ nav {
     margin: 0;
   }
   
+  nav p {
+    margin-top:10;
+    margin-bottom: 0;
+    font-size: small;
+  }
   nav a {
     margin-right: 1rem;
     color: #333;

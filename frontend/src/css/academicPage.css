@@ -1,0 +1,49 @@
+.mainContainer {
+  height: 100%;
+  display: flex;
+}
+
+.tabHeader {
+  display: flex;
+  padding-left: 2%;
+  color: white;
+}
+
+.card {
+  position: relative;
+  box-sizing: border-box;
+  background: #ffeaa760;
+  border: 1px solid white;
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  font-weight: bolder;
+  color: black;
+  max-width: 15%;
+  /* set a max-width for the card */
+  width: max-content;
+  left: 22.5%;
+  margin-right: 5%;
+}
+
+.card:hover {
+  border: 1px solid black;
+  transform: scale(1.05);
+  background-color: #000000;
+  color: #ffeba7;
+}
+
+.card:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}
+
+.card img {
+  width: 100%;
+}
