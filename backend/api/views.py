@@ -38,7 +38,7 @@ def getRoutes(request):
 @permission_classes([IsAuthenticated])
 def testEndPoint(request):
     if request.method == 'GET':
-        data = f"Congratulation {request.user}, your API just responded to GET request"
+        data = f"Congratulations {request.user.first_name}, your API just responded to GET request"
         return Response({'response': data}, status=status.HTTP_200_OK)
     elif request.method == 'POST':
         text = request.POST.get('text')
