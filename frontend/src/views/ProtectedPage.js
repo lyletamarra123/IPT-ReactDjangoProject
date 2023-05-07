@@ -48,7 +48,7 @@ const subjectOfferings = [
   // add more colleges and subjects here
 ];
 
-function PopupContent({ onClose }) {
+function SubjectOfferings({ onClose }) {
   const [selectedCollege, setSelectedCollege] = useState("");
   const selectedSubjects =
     selectedCollege &&
@@ -98,10 +98,91 @@ function PopupContent({ onClose }) {
         </table>
       )}
       <br></br>
-      <button onClick={onClose}>Close</button>
+      <button onClick={onClose} className="close">
+        <i className="fas fa-times">X</i>
+      </button>
     </div>
   );
 }
+
+function EnrollmentForm({ onClose }) {
+  const [selectedSubjects, setSelectedSubjects] = useState([]);
+  const subjects = subjectOfferings.flatMap((offering) => offering.subjects);
+
+  const handleSubjectSelection = (e) => {
+    const subject = e.target.value;
+    if (e.target.checked) {
+      setSelectedSubjects([...selectedSubjects, subject]);
+    } else {
+      setSelectedSubjects(selectedSubjects.filter((s) => s !== subject));
+    }
+  };
+
+  const getTotalUnits = () => {
+    let totalUnits = 0;
+    selectedSubjects.forEach((subject) => {
+      const selectedSubject = subjects.find((s) => s.offerCode === subject);
+      if (selectedSubject) {
+        totalUnits += selectedSubject.units;
+      }
+    });
+    return totalUnits;
+  };
+
+  const enroll = (e) => {
+    e.preventDefault();
+    const totalUnits = getTotalUnits();
+    if (totalUnits > 24) {
+      alert("You can only enroll up to 24 units.");
+    } else {
+      alert("Enroll Successful!");
+      console.log(selectedSubjects);
+      // do something with the selected subjects here...
+    }
+  };
+
+  return (
+    <div className="popup-EFcontent">
+      <h2>Enrollment Form</h2>
+      <form onSubmit={enroll}>
+        <table>
+          <thead>
+            <tr>
+              <th>Offer Code</th>
+              <th>Title</th>
+              <th>Course Number</th>
+              <th>Units</th>
+              <th>Enroll</th>
+            </tr>
+          </thead>
+          <tbody>
+            {subjects.map((subject) => (
+              <tr key={subject.offerCode}>
+                <td>{subject.offerCode}</td>
+                <td>{subject.title}</td>
+                <td>{subject.courseNumber}</td>
+                <td>{subject.units}</td>
+                <td>
+                  <input
+                    type="checkbox"
+                    value={subject.offerCode}
+                    checked={selectedSubjects.includes(subject.offerCode)}
+                    onChange={handleSubjectSelection}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <button type="submit" className="enroll">Enroll</button>
+      </form>
+      <button onClick={onClose} className="close">
+        <i className="fas fa-times">X</i>
+      </button>
+    </div>
+  );
+}
+
 
 function ProtectedPage() {
   const [res, setRes] = useState("");
@@ -120,14 +201,23 @@ function ProtectedPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [showPopup, setShowPopup] = useState(false);
+  const [showSOPopup, setshowSOPopup] = useState(false);
+  const [showEFPopup, setshowEFPopup] = useState(false);
 
-  const handleCardClick = () => {
-    setShowPopup(true);
+  const handleCard1Click = () => {
+    setshowSOPopup(true);
   };
 
-  const handleClosePopup = () => {
-    setShowPopup(false);
+  const handleCard2Click = () => {
+    setshowEFPopup(true);
+  };
+
+  const handleCloseSOPopup = () => {
+    setshowSOPopup(false);
+  };
+
+  const handleCloseEFPopup = () => {
+    setshowEFPopup(false);
   };
 
   return (
@@ -139,24 +229,30 @@ function ProtectedPage() {
       <h1 className="tabHeader">Academic Options</h1>
       <div className="mainContainer">
         <br></br>
-        <div class="card" onClick={handleCardClick}>
+        <div class="card" onClick={handleCard1Click}>
           <div class="container">
             <img src={subj} alt="enrollsubj" />
             <h4><b>Subject Offerings</b></h4>
           </div>
         </div>
-        {showPopup && (
-        ReactDOM.createPortal(
-          <PopupContent onClose={handleClosePopup} />,
-          document.body
-        )
-      )}
-        <div class="card">
+        {showSOPopup && (
+          ReactDOM.createPortal(
+            <SubjectOfferings onClose={handleCloseSOPopup} />,
+            document.body
+          )
+        )}
+        <div class="card" onClick={handleCard2Click}>
           <div class="container">
             <img src={enroll} alt="enrollsubj" />
             <h4><b>Enroll</b></h4>
           </div>
         </div>
+        {showEFPopup && (
+          ReactDOM.createPortal(
+            <EnrollmentForm onClose={handleCloseEFPopup} />,
+            document.body
+          )
+        )}
         <div class="card">
           <div class="container">
             <img src={status} alt="enrollsubj" />
