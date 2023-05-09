@@ -136,8 +136,8 @@ function EnrollmentForm({ onClose }) {
       alert("You can only enroll up to 24 units.");
     } else {
       alert("Enroll Successful!");
-      console.log(selectedSubjects);
-      // do something with the selected subjects here...
+      console.log("Selected subjects:", selectedSubjects);
+      processSelectedSubjects(selectedSubjects, subjectOfferings.flatMap((offering) => offering.subjects));
     }
   };
 
@@ -183,6 +183,12 @@ function EnrollmentForm({ onClose }) {
   );
 }
 
+function processSelectedSubjects(selectedSubjects, subjects) {
+  selectedSubjects.forEach((subject) => {
+    const { offerCode, courseNumber, title, units } = subjects.find((s) => s.offerCode === subject);
+    console.log(`Offer Code: ${offerCode}, Course Number: ${courseNumber}, Title: ${title}, Units: ${units}`);
+  });
+}
 
 function ProtectedPage() {
   const [res, setRes] = useState("");
