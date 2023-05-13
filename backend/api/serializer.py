@@ -61,3 +61,13 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         return student
 
+from .models import College, Subject      
+class CollegeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model =  College
+        fields = '__all__'
+
+class SubjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model =  Subject
+        fields = '__all__'

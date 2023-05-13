@@ -55,3 +55,7 @@ admin.site.register(User, UserAdmin)
 
 # Register the Employee model with its custom admin class
 admin.site.register(Student)
+
+from .models import College, Subject
+admin.site.register(College)
+admin.site.register(Subject)
