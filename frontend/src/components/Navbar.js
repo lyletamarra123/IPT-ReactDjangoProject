@@ -16,6 +16,7 @@ const Navbar = () => {
               <p>{user && <UserInfo user={user} />}</p>
               <Link to="/">Home</Link>
               <Link to="/protected">Academics</Link>
+              <Link to="/subject_offerings">Subject Offerings</Link>
               <button onClick={logoutUser}>Logout</button>
             </>
           ) : (

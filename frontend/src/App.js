@@ -9,6 +9,11 @@ import Home from "./views/homePage";
 import Login from "./views/loginPage";
 import Register from "./views/registerPage";
 import ProtectedPage from "./views/ProtectedPage";
+
+
+import CollegeTable from "./views/CollegeTable";
+import SubjectTable
+ from "./views/SubjectOfferings";
 import "./App.css";
 
 function App() {
@@ -20,6 +25,7 @@ function App() {
           <div className="content">
           <Switch>
             <PrivateRoute component={ProtectedPage} path="/protected" exact />
+            <PrivateRoute component={SubjectTable} path="/subject_offerings" exact />
             <Route component={Login} path="/login" />
             <Route component={Register} path="/register" />
             <Route component={Home} path="/" />
