@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import JsonResponse
-from api.serializer import MyTokenObtainPairSerializer, RegisterSerializer
+from api.serializer import MyTokenObtainPairSerializer, RegisterSerializer, CollegeSerializer, SubjectSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics
 from django.contrib.auth.models import User
@@ -26,9 +26,12 @@ class RegisterView(generics.CreateAPIView):
 @api_view(['GET'])
 def getRoutes(request):
     routes = [
+        '/api/test/',
         '/api/token/',
         '/api/register/',
-        '/api/token/refresh/'
+        '/api/token/refresh/',
+        '/api/colleges/',
+        '/api/subjects/',
     ]
     return Response(routes)
 
@@ -45,3 +48,76 @@ def testEndPoint(request):
         data = f'Congratulation your API just responded to POST request with text: {text}'
         return Response({'response': data}, status=status.HTTP_200_OK)
     return Response({}, status.HTTP_400_BAD_REQUEST)
+
+from .models import College, Subject
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
+def getSubjectsAPI(request, offerCode=""):
+    if request.method == 'POST':
+        data = request.data
+        offer_code = data.get('offerCode')
+        if Subject.objects.filter(offerCode=offer_code).exists():
+            return Response({'error': 'Offer code already exists.'}, status=status.HTTP_400_BAD_REQUEST)
+        serializer = SubjectSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'GET':
+        if offerCode:
+            subject = Subject.objects.get(offerCode=offerCode)
+            serializer = SubjectSerializer(subject)
+            return Response(serializer.data, status=200)
+        else:
+            subject = Subject.objects.all()
+            serializer = SubjectSerializer(subject, many=True)
+            return Response(serializer.data, status=200)
+
+    elif request.method == 'PUT':
+        data = request.data
+        subject = Subject.objects.get(offerCode=data['offerCode'])
+        serializer = SubjectSerializer(subject, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+    elif request.method == 'DELETE':
+        subject = Subject.objects.get(offerCode=offerCode)
+        subject.delete()
+        return Response(status=204)
+    
+
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
+def getCollegesAPI(request, title=""):
+    if request.method == 'POST':
+        data = request.data
+        serializer = CollegeSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+    elif request.method == 'GET':
+        if title:
+            college = College.objects.get(title=title)
+            serializer = CollegeSerializer(college)
+            return Response(serializer.data, status=200)
+        else:
+            college = College.objects.all()
+            serializer = CollegeSerializer(college, many=True)
+            return Response(serializer.data, status=200)
+
+    elif request.method == 'PUT':
+        data = request.data
+        college = College.objects.get(offerCode=data['offerCode'])
+        serializer = CollegeSerializer(college, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+    elif request.method == 'DELETE':
+        college = College.objects.get(title=title)
+        college.delete()
+        return Response(status=204)
