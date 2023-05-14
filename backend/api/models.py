@@ -7,6 +7,8 @@ class Student(models.Model):
     degree_program = models.CharField(max_length=100)
     year_level = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.user.username
 class College(models.Model):
     title = models.CharField(primary_key=True, max_length=100)
     description = models.CharField(max_length=100, null=True)
@@ -29,3 +31,11 @@ class Subject(models.Model):
 
     def __str__(self):
         return self.title
+
+class StudentEnrollment(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    subjects = models.ManyToManyField(Subject)
+    enrollment_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.student.user.username
