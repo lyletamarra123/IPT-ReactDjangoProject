@@ -12,8 +12,9 @@ import ProtectedPage from "./views/ProtectedPage";
 
 
 import CollegeTable from "./views/CollegeTable";
-import SubjectTable
- from "./views/SubjectOfferings";
+import SubjectTable from "./views/SubjectOfferings";
+import Enrollment from "./views/EnrollmentPage";
+
 import "./App.css";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Switch>
             <PrivateRoute component={ProtectedPage} path="/protected" exact />
             <PrivateRoute component={SubjectTable} path="/subject_offerings" exact />
+            <PrivateRoute component={Enrollment} path="/enrollment" exact />
             <Route component={Login} path="/login" />
             <Route component={Register} path="/register" />
             <Route component={Home} path="/" />
