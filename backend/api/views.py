@@ -49,7 +49,7 @@ def testEndPoint(request):
         return Response({'response': data}, status=status.HTTP_200_OK)
     return Response({}, status.HTTP_400_BAD_REQUEST)
 
-from .models import College, Subject
+from .models import College, Subject,StudentEnrollment
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
 def getSubjectsAPI(request, offerCode=""):
     if request.method == 'POST':
@@ -121,3 +121,15 @@ def getCollegesAPI(request, title=""):
         college = College.objects.get(title=title)
         college.delete()
         return Response(status=204)
+    
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def enrollSubjects(request):
+    student = request.user.student
+    selected_subjects = request.data.get('selectedSubjects', [])
+
+    enrollment = StudentEnrollment.objects.create(student=student)
+    enrollment.subjects.set(selected_subjects)
+
+    return Response({'message': 'Enrollment successful'}, status=status.HTTP_201_CREATED)
+   

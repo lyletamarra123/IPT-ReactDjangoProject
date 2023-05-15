@@ -15,4 +15,5 @@ urlpatterns = [
     path('subjects/<str:offerCode>', views.getSubjectsAPI),
     path('colleges/', views.getCollegesAPI),
     path('colleges/<str:title>', views.getCollegesAPI),
+    path('enroll/', views.enrollSubjects),
 ]

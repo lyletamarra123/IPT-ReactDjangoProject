@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../css/EnrollmentPage.css';
+import AuthContext from '../context/AuthContext';
 
 function Enrollment() {
     const [subjects, setSubjects] = useState([]);
     const [selectedSubjects, setSelectedSubjects] = useState([]);
+    const { authTokens } = useContext(AuthContext);
 
     useEffect(() => {
 
@@ -36,12 +38,34 @@ function Enrollment() {
         e.preventDefault();
         const totalUnits = getTotalUnits();
         if (totalUnits > 24) {
-            alert("You can only enroll up to 24 units.");
+          alert("You can only enroll up to 24 units.");
         } else {
-            alert("Enroll Successful!");
-            console.log("Selected subjects:", selectedSubjects);
+          alert("Enroll Successful!");
+          console.log("Selected subjects:", selectedSubjects);
+          const enrollmentData = {
+            student: authTokens.user_id, // Assuming user_id is the student ID
+            subjects: selectedSubjects
+          };
+          // Send the enrollment data to the backend
+          fetch('http://localhost:8000/api/enroll/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${authTokens.access}` // Include the access token in the header
+            },
+            body: JSON.stringify(enrollmentData)
+          })
+            .then(response => response.json())
+            .then(data => {
+              console.log('Enrollment response:', data);
+              // Handle the response as needed
+            })
+            .catch(error => {
+              console.error('Enrollment error:', error);
+              // Handle the error as needed
+            });
         }
-    };
+      };
 
     return (
         <div>
