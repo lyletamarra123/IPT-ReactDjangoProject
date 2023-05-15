@@ -39,6 +39,7 @@ function Enrollment() {
             alert("You can only enroll up to 24 units.");
         } else {
             alert("Enroll Successful!");
+            console.log("Selected subjects:", selectedSubjects);
         }
     };
 
