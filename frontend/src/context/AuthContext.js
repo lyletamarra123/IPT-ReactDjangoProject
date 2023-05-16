@@ -111,6 +111,28 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const addSubject = async (offerCode, courseNumber, title, units, selectedCollege) => {
+    const response = await fetch("http://127.0.0.1:8000/api/subjects/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        offerCode,
+        course_number: courseNumber,
+        title,
+        units,
+        college_title: selectedCollege
+      })
+    });
+    if (response.status === 201) {
+      alert("Subject added successfully!");
+      history.push("/admin_subjects");
+    } else {
+      alert("Something went wrong!");
+    }
+  };
+
   const deleteCollege = async (title) => {
     try {
       const response = await fetch(`http://127.0.0.1:8000/api/colleges/${title}`, {
@@ -144,6 +166,7 @@ export const AuthProvider = ({ children }) => {
     loginAdmin,
     loginUser,
     addCollege,
+    addSubject,
     deleteCollege,
     logoutUser
   };

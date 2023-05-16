@@ -20,20 +20,20 @@ function AddCollege() {
         <h1>Add a college</h1>
         <hr />
         <div>
-          <label htmlFor="username">College Title</label>
+          <label htmlFor="title">College Title</label>
           <input
             type="text"
-            id="username"
+            id="title"
             onChange={e => setTitle(e.target.value)}
             placeholder="College Title"
             required
           />
         </div>
         <div>
-          <label htmlFor="password">College Description</label>
+          <label htmlFor="description">College Description</label>
           <input
             type="text"
-            id="firstname"
+            id="description"
             onChange={e => setDescription(e.target.value)}
             placeholder="Description"
             required

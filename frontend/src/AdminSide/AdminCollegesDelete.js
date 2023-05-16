@@ -19,10 +19,10 @@ function DeleteCollege() {
         <h1>Delete a college</h1>
         <hr />
         <div>
-          <label htmlFor="username">College Title</label>
+          <label htmlFor="title">College Title</label>
           <input
             type="text"
-            id="username"
+            id="title"
             onChange={e => setTitle(e.target.value)}
             placeholder="College Title"
             required

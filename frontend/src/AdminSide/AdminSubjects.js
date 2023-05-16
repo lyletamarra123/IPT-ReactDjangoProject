@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/SubjectTable.css';
+import { useHistory } from "react-router-dom";
 
 function AdminSubjects() {
   const [subjects, setSubjects] = useState([]);
   const [colleges, setColleges] = useState([]);
   const [selectedCollege, setSelectedCollege] = useState('');
+  const history = useHistory();
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/subjects/')
@@ -14,6 +16,14 @@ function AdminSubjects() {
     axios.get('http://localhost:8000/api/colleges/')
       .then(response => setColleges(response.data));
   }, []);
+
+  const handleAddSubject = () => {
+    history.push("/admin_subjects/add_subject");
+  };
+
+  const handleDeleteSubject = () => {
+    history.push("/admin_subjects/delete_subject");
+  };
 
   return (
     <div>
@@ -32,6 +42,10 @@ function AdminSubjects() {
             </option>
           ))}
         </select>
+      </div>
+      <div className="button-container">
+        <button className="add-button" onClick={handleAddSubject}>Add Subject/s</button>
+        <button className="delete-button" onClick={handleDeleteSubject}>Delete Subject/s</button>
       </div>
       <table className='table'>
         <thead>
