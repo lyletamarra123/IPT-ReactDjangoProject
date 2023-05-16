@@ -15,6 +15,8 @@ import CollegeTable from "./views/CollegeTable";
 import SubjectTable from "./views/SubjectOfferings";
 import Enrollment from "./views/EnrollmentPage";
 import Status from "./views/EnrollmentStatus";
+
+import AdminLoginPage from "./AdminSide/AdminLogin";
 import "./App.css";
 
 function App() {
@@ -29,6 +31,7 @@ function App() {
             <PrivateRoute component={SubjectTable} path="/subject_offerings" exact />
             <PrivateRoute component={Enrollment} path="/enrollment" exact />
             <PrivateRoute component={Status} path="/status" exact />
+            <Route component={AdminLoginPage} path="/admin_login"/>
             <Route component={Login} path="/login" />
             <Route component={Register} path="/register" />
             <Route component={Home} path="/" />
