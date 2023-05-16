@@ -137,7 +137,7 @@ def enrollment_list(request, student = ""):
     elif request.method == 'POST':
         data = request.data
         student = request.user.student
-        selected_subjects = request.data.get('selectedSubjects', [])
+        selected_subjects = request.data.get('selectedSubjects')
 
         enrollment = StudentEnrollment.objects.create(student=student)
         enrollment.subjects.set(selected_subjects)
