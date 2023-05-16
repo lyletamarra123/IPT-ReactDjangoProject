@@ -3,22 +3,22 @@ import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import UserInfo from "../components/UserInfo";
 import "../css/Navbar.css";
+import { useNav } from "../hooks/use-nav";
 
 const Navbar = () => {
   const { user, logoutUser } = useContext(AuthContext);
+  const isAdmin = user?.username === "admin" ?? false; // Assuming 'is_admin' property exists in the user object
+  const {navigations} = useNav(isAdmin);
   return (
     <nav>
       <div>
         <h1>Student Enrollment System</h1>
         <div>
+
           {user ? (
             <>
               <p>{user && <UserInfo user={user} />}</p>
-              <Link to="/">Home</Link>
-              <Link to="/protected">Academics</Link>
-              <Link to="/subject_offerings">Subject Offerings</Link>
-              <Link to="/enrollment">Enroll</Link>
-              <Link to="/status">Enrollment Status</Link>
+              {navigations}
               <button onClick={logoutUser}>Logout</button>
             </>
           ) : (
@@ -27,6 +27,7 @@ const Navbar = () => {
               <Link to="/register">Register</Link>
             </>
           )}
+          
         </div>
       </div>
     </nav>

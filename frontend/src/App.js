@@ -28,6 +28,7 @@ function App() {
           <div className="content">
           <Switch>
             <PrivateRoute component={ProtectedPage} path="/protected" exact />
+            <PrivateRoute component={ProtectedPage} path="/admin_panel" exact />
             <PrivateRoute component={SubjectTable} path="/subject_offerings" exact />
             <PrivateRoute component={Enrollment} path="/enrollment" exact />
             <PrivateRoute component={Status} path="/status" exact />
