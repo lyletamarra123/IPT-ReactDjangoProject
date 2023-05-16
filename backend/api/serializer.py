@@ -61,7 +61,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         return student
 
-from .models import College, Subject      
+from .models import College, Subject, StudentEnrollment      
 class CollegeSerializer(serializers.ModelSerializer):
     class Meta:
         model =  College
@@ -70,4 +70,10 @@ class CollegeSerializer(serializers.ModelSerializer):
 class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
         model =  Subject
+        fields = '__all__'
+
+
+class StudentEnrollmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model =  StudentEnrollment
         fields = '__all__'

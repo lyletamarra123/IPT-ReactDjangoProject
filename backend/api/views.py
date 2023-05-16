@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import JsonResponse
-from api.serializer import MyTokenObtainPairSerializer, RegisterSerializer, CollegeSerializer, SubjectSerializer
+from api.serializer import MyTokenObtainPairSerializer, RegisterSerializer, CollegeSerializer, SubjectSerializer, StudentEnrollmentSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework import generics
 from django.contrib.auth.models import User
@@ -122,14 +122,24 @@ def getCollegesAPI(request, title=""):
         college.delete()
         return Response(status=204)
     
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
-def enrollSubjects(request):
-    student = request.user.student
-    selected_subjects = request.data.get('selectedSubjects', [])
+@api_view(['GET', 'POST'])
+def enrollment_list(request, student = ""):
+    if request.method == 'GET':
+        if student:
+            enrollment = StudentEnrollment.objects.filter(student=student)
+            serializer = StudentEnrollmentSerializer(enrollment, many=True)
+            return Response(serializer.data, status=200)
+        else:
+            enrollment = StudentEnrollment.objects.all()
+            serializer = StudentEnrollmentSerializer(enrollment, many=True)
+            return Response(serializer.data, status=200)
+        
+    elif request.method == 'POST':
+        data = request.data
+        student = request.user.student
+        selected_subjects = request.data.get('selectedSubjects', [])
 
-    enrollment = StudentEnrollment.objects.create(student=student)
-    enrollment.subjects.set(selected_subjects)
+        enrollment = StudentEnrollment.objects.create(student=student)
+        enrollment.subjects.set(selected_subjects)
 
-    return Response({'message': 'Enrollment successful'}, status=status.HTTP_201_CREATED)
-   
+        return Response({'message': 'Enrollment successful'}, status=status.HTTP_201_CREATED)
