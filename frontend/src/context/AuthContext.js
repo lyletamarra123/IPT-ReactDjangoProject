@@ -92,7 +92,24 @@ export const AuthProvider = ({ children }) => {
     }
   };
   
-  
+  const addCollege = async (title, description) => {
+    const response = await fetch("http://127.0.0.1:8000/api/colleges/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title,
+        description
+      })
+    });
+    if (response.status === 201) {
+      alert("College added successfully!");
+      history.push("/admin_colleges");
+    } else {
+      alert("Something went wrong!");
+    }
+  };
 
   const logoutUser = () => {
     setAuthTokens(null);
@@ -109,6 +126,7 @@ export const AuthProvider = ({ children }) => {
     registerUser,
     loginAdmin,
     loginUser,
+    addCollege,
     logoutUser
   };
 
