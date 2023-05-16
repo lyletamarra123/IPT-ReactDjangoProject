@@ -150,6 +150,23 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const deleteSubject = async (offerCode) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/subjects/${offerCode}`, {
+        method: "DELETE",
+      });
+      if (response.status === 204) {
+        alert("Subject deleted successfully!");
+        history.push("/admin_subjects");
+      } else {
+        alert("Something went wrong!");
+      }
+    } catch (error) {
+      console.error("Error deleting subject:", error);
+      alert("Something went wrong!");
+    }
+  };
+
   const logoutUser = () => {
     setAuthTokens(null);
     setUser(null);
@@ -168,6 +185,7 @@ export const AuthProvider = ({ children }) => {
     addCollege,
     addSubject,
     deleteCollege,
+    deleteSubject,
     logoutUser
   };
 

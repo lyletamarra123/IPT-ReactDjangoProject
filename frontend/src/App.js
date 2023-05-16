@@ -23,6 +23,7 @@ import AdminColleges from "./AdminSide/AdminColleges";
 import AddCollege from "./AdminSide/AdminCollegesAdd";
 import DeleteCollege from "./AdminSide/AdminCollegesDelete";
 import AddSubjectOffer from "./AdminSide/AdminSubjectsAdd";
+import DeleteSubject from "./AdminSide/AdminSubjectsDelete";
 
 import "./App.css";
 
@@ -44,6 +45,7 @@ function App() {
             <PrivateRoute component={AddCollege} path="/admin_colleges/add_college" exact />
             <PrivateRoute component={DeleteCollege} path="/admin_colleges/delete_college" exact />
             <PrivateRoute component={AddSubjectOffer} path="/admin_subjects/add_subject" exact />
+            <PrivateRoute component={DeleteSubject} path="/admin_subjects/delete_subject" exact />
 
             <Route component={AdminHome} path="/admin_home"/>
             <Route component={AdminLoginPage} path="/admin_login"/>
