@@ -31,6 +31,7 @@ function ProtectedPage() {
   };
 
   const handleCard2Click = () => {
+    history.push("/admin_colleges");
   };
 
   return (
