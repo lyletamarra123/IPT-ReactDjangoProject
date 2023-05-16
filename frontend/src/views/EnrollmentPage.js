@@ -34,38 +34,29 @@ function Enrollment() {
         return totalUnits;
     };
 
-    const enroll = (e) => {
+    const enroll = async (e) => {
         e.preventDefault();
         const totalUnits = getTotalUnits();
         if (totalUnits > 24) {
-          alert("You can only enroll up to 24 units.");
+            alert("You can only enroll up to 24 units.");
         } else {
-          alert("Enroll Successful!");
-          console.log("Selected subjects:", selectedSubjects);
-          const enrollmentData = {
-            student: authTokens.user_id, // Assuming user_id is the student ID
-            subjects: selectedSubjects
-          };
-          // Send the enrollment data to the backend
-          fetch('http://localhost:8000/api/enroll/', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${authTokens.access}` // Include the access token in the header
-            },
-            body: JSON.stringify(enrollmentData)
-          })
-            .then(response => response.json())
-            .then(data => {
-              console.log('Enrollment response:', data);
-              // Handle the response as needed
-            })
-            .catch(error => {
-              console.error('Enrollment error:', error);
-              // Handle the error as needed
+            const response = await fetch("http://127.0.0.1:8000/api/enroll/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${authTokens.access}`,
+                },
+                body: JSON.stringify({ selectedSubjects }),
             });
+
+            if (response.status === 201) {
+                alert("Enroll Successful!");
+                console.log("Selected subjects:", selectedSubjects);
+            } else {
+                alert("Something went wrong!");
+            }
         }
-      };
+    };
 
     return (
         <div>

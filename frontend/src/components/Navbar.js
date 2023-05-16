@@ -18,6 +18,7 @@ const Navbar = () => {
               <Link to="/protected">Academics</Link>
               <Link to="/subject_offerings">Subject Offerings</Link>
               <Link to="/enrollment">Enroll</Link>
+              <Link to="/status">Enrollment Status</Link>
               <button onClick={logoutUser}>Logout</button>
             </>
           ) : (
