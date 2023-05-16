@@ -111,6 +111,23 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const deleteCollege = async (title) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/colleges/${title}`, {
+        method: "DELETE",
+      });
+      if (response.status === 204) {
+        alert("College deleted successfully!");
+        history.push("/admin_colleges");
+      } else {
+        alert("Something went wrong!");
+      }
+    } catch (error) {
+      console.error("Error deleting college:", error);
+      alert("Something went wrong!");
+    }
+  };
+
   const logoutUser = () => {
     setAuthTokens(null);
     setUser(null);
@@ -127,6 +144,7 @@ export const AuthProvider = ({ children }) => {
     loginAdmin,
     loginUser,
     addCollege,
+    deleteCollege,
     logoutUser
   };
 

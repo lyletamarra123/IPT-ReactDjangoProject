@@ -21,6 +21,7 @@ import AdminHome from "./AdminSide/AdminHome";
 import AdminSubjects from "./AdminSide/AdminSubjects";
 import AdminColleges from "./AdminSide/AdminColleges";
 import AddCollege from "./AdminSide/AdminCollegesAdd";
+import DeleteCollege from "./AdminSide/AdminCollegesDelete";
 
 import "./App.css";
 
@@ -40,6 +41,7 @@ function App() {
             <PrivateRoute component={AdminSubjects} path="/admin_subjects" exact />
             <PrivateRoute component={AdminColleges} path="/admin_colleges" exact />
             <PrivateRoute component={AddCollege} path="/admin_colleges/add_college" exact />
+            <PrivateRoute component={DeleteCollege} path="/admin_colleges/delete_college" exact />
 
             <Route component={AdminHome} path="/admin_home"/>
             <Route component={AdminLoginPage} path="/admin_login"/>

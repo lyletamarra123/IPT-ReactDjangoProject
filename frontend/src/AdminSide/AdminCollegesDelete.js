@@ -3,21 +3,20 @@ import AuthContext from "../context/AuthContext";
 import "../css/registerPage.css";
 
 
-function AddCollege() {
+function DeleteCollege() {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const { addCollege } = useContext(AuthContext);
+  const { deleteCollege } = useContext(AuthContext);
   
 
   const handleSubmit = async e => {
     e.preventDefault();
-    addCollege(title, description);
+    deleteCollege(title);
   };
 
   return (
     <section className="regSection">
       <form onSubmit={handleSubmit} className="regForm">
-        <h1>Add a college</h1>
+        <h1>Delete a college</h1>
         <hr />
         <div>
           <label htmlFor="username">College Title</label>
@@ -29,20 +28,10 @@ function AddCollege() {
             required
           />
         </div>
-        <div>
-          <label htmlFor="password">College Description</label>
-          <input
-            type="text"
-            id="firstname"
-            onChange={e => setDescription(e.target.value)}
-            placeholder="Description"
-            required
-          />
-        </div>
-        <button>Add College</button>
+        <button>Delete College</button>
       </form>
     </section>
   );
 }
 
-export default AddCollege;
+export default DeleteCollege;

@@ -17,8 +17,7 @@ function AdminColleges() {
   };
 
   const handleDeleteCollege = () => {
-    // Logic for deleting college(s)
-    // You can implement a confirmation dialog and send a request to delete the selected college(s) to the server
+    history.push("/admin_colleges/delete_college");
   };
 
   return (
