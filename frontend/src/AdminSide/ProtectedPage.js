@@ -6,6 +6,7 @@ import '../css/academicPage.css';
 import subj from '../images/enrollSubj2.png';
 import enroll from '../images/enroll.png';
 import status from '../images/status.png';
+import college from '../images/college.png';
 
 function ProtectedPage() {
   const [res, setRes] = useState("");
@@ -34,6 +35,10 @@ function ProtectedPage() {
     history.push("/admin_colleges");
   };
 
+  const handleCard3Click = () => {
+    history.push("/admin_enrollment_list");
+  };
+
   return (
     // <div>
     //   <h1>Projected Page</h1>
@@ -51,13 +56,13 @@ function ProtectedPage() {
         </div>
         <div class="card" onClick={handleCard2Click}>
           <div class="container">
-            <img src={enroll} alt="enrollsubj" />
+            <img src={college} alt="enrollsubj" />
             <h4><b>Colleges</b></h4>
           </div>
         </div>
-        <div class="card">
+        <div class="card" onClick={handleCard3Click}>
           <div class="container">
-            <img src={status} alt="enrollsubj" />
+            <img src={enroll} alt="enrollsubj" />
             <h4><b>List Of Enrollees</b></h4>
           </div>
         </div>
