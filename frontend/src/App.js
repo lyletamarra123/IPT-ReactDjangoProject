@@ -9,7 +9,6 @@ import { AuthProvider } from "./context/AuthContext";
 import Home from "./views/homePage";
 import Login from "./views/loginPage";
 import Register from "./views/registerPage";
-import CollegeTable from "./views/CollegeTable";
 import SubjectTable from "./views/SubjectOfferings";
 import Enrollment from "./views/EnrollmentPage";
 import Status from "./views/EnrollmentStatus";

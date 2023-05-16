@@ -1,31 +1,13 @@
-import { useEffect, useState} from "react";
-import useAxios from "../utils/useAxios";
+
 import { useHistory } from "react-router-dom";
 
 import '../css/academicPage.css';
 import subj from '../images/enrollSubj2.png';
 import enroll from '../images/enroll.png';
-import status from '../images/status.png';
 import college from '../images/college.png';
 
 function ProtectedPage() {
-  const [res, setRes] = useState("");
-  const api = useAxios();
   const history = useHistory();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get("/test/");
-        setRes(response.data.response);
-      } catch {
-        setRes("Something went wrong");
-      }
-    };
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
 
   const handleCard1Click = () => {
     history.push("/admin_subjects");
