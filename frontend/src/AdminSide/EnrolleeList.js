@@ -31,7 +31,7 @@ function EnrolleeList() {
         <tbody>
           {enrollments.map(enrollment => (
             <tr key={enrollment.id}>
-              <td>{enrollment.student}</td>
+              <td>{enrollment.student_username}</td>
               <td>{enrollment.subjects.join(', ')}</td>
             </tr>
           ))}

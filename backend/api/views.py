@@ -123,10 +123,10 @@ def getCollegesAPI(request, title=""):
         return Response(status=204)
     
 @api_view(['GET', 'POST'])
-def enrollment_list(request, student = ""):
+def enrollment_list(request, student=""):
     if request.method == 'GET':
         if student:
-            enrollment = StudentEnrollment.objects.filter(student=student)
+            enrollment = StudentEnrollment.objects.filter(student__user__username=student)
             serializer = StudentEnrollmentSerializer(enrollment, many=True)
             return Response(serializer.data, status=200)
         else:
@@ -139,7 +139,7 @@ def enrollment_list(request, student = ""):
         student = request.user.student
         selected_subjects = request.data.get('selectedSubjects')
 
-        enrollment = StudentEnrollment.objects.create(student=student)
+        enrollment = StudentEnrollment.objects.create(username=student)
         enrollment.subjects.set(selected_subjects)
 
         return Response({'message': 'Enrollment successful'}, status=status.HTTP_201_CREATED)

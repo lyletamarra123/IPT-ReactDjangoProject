@@ -74,6 +74,8 @@ class SubjectSerializer(serializers.ModelSerializer):
 
 
 class StudentEnrollmentSerializer(serializers.ModelSerializer):
+    student_username = serializers.CharField(source='student.user.username')
+
     class Meta:
-        model =  StudentEnrollment
-        fields = '__all__'
+        model = StudentEnrollment
+        fields = ['id', 'enrollment_date', 'student', 'student_username', 'subjects']

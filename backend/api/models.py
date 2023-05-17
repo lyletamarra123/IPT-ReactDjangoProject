@@ -39,3 +39,9 @@ class StudentEnrollment(models.Model):
 
     def __str__(self):
         return self.student.user.username
+    def username(self):
+        return self.student.user.username
+
+    @property
+    def student_username(self):
+        return self.student.user.username
